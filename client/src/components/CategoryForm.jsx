@@ -64,26 +64,26 @@ export default function CategoryForm({ editCategory }) {
     reload(res, _user);
   }
 
-  //   async function update() {
-  //     const res = await fetch(
-  //       `${process.env.REACT_APP_API_URL}/category/${editCategory._id}`,
-  //       {
-  //         method: "PATCH",
-  //         body: JSON.stringify(form),
-  //         headers: {
-  //           "content-type": "application/json",
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       }
-  //     );
-  //     const _user = {
-  //       ...user,
-  //       categories: user.categories.map((cat) =>
-  //         cat._id == editCategory._id ? form : cat
-  //       ),
-  //     };
-  //     reload(res, _user);
-  //   }
+  async function update() {
+    const res = await fetch(
+      `${process.env.REACT_APP_API_URL}/category/${editCategory._id}`,
+      {
+        method: "PATCH",
+        body: JSON.stringify(form),
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const _user = {
+      ...user,
+      categories: user.categories.map((cat) =>
+        cat._id == editCategory._id ? form : cat
+      ),
+    };
+    reload(res, _user);
+  }
 
   function getCategoryNameById() {
     return (
